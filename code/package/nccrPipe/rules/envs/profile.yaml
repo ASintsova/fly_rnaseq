@@ -1,5 +1,0 @@
-channels:
-  - bioconda
-dependencies:
-  - motus==2.5.1
-  - mash==2.2.2

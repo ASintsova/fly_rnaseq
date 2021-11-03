@@ -1,9 +1,0 @@
-channels:
-  - bioconda
-dependencies:
-  - mummer==3.23
-  - fastani==1.32
-  - phylophlan==3.0.*
-  - ariba=2.14
-  - iqtree=2.0.3
-

@@ -1,9 +1,0 @@
-channels:
-  - conda-forge
-  - bioconda
-  - defaults
-dependencies:
-  - prokka=1.14
-  - prodigal=2.6.3
-  - diamond=2.0.9
-  - biopython=1.79

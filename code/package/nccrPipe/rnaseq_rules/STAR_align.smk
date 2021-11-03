@@ -30,7 +30,6 @@ rule STAR_index:
 rule STAR_align:
     input: index_done = OUTDIR/f'{config["ProjectName"]}.index.done',
         fq1 = OUTDIR/'clean_reads/{sample}/{sample}.1.fq.gz',
-        fq2= OUTDIR/'clean_reads/{sample}/{sample}.2.fq.gz'
     output: marker = touch(OUTDIR/'bam/{sample}/{sample}.done'),
          bam = OUTDIR/'bam/{sample}/{sample}_Aligned.sortedByCoord.out.bam'
     params:
@@ -40,6 +39,7 @@ rule STAR_align:
         annotation = config["refAnn"],
         overhang = config["overhang"],
         maxIntron=config['maxIntron'],
+        genomeSAIndexNbases=config['genomeSAIndexNbases'],
         prefix = lambda wildcards: OUTDIR/f'bam/{wildcards.sample}/{wildcards.sample}_',
         threads = 8,
         scratch = 6000,
@@ -51,13 +51,14 @@ rule STAR_align:
     threads:
         32
     shell: "STAR --runThreadN {params.threads} "
-           "--readFilesIn {input.fq1} {input.fq2} "
+           "--readFilesIn {input.fq1}  "
            "--readFilesCommand gunzip -c " #format for paired end
            "--genomeDir {params.genomeDir} "
            "--sjdbGTFfile {params.annotation} "
            "--sjdbOverhang {params.overhang} "
            "--outFileNamePrefix {params.prefix} "
            "--outSAMtype BAM SortedByCoordinate "
+           "--genomeSAindexNbases {params.genomeSAIndexNbases} "
            "--outSAMunmapped Within "
            "--outSAMattributes Standard "
            "--alignIntronMax {params.maxIntron} "
@@ -103,7 +104,7 @@ rule featureCounts:
     threads:
         32
     shell:
-        "featureCounts -p -T {params.threads} " 
+        "featureCounts -T {params.threads} " 
         "-a {params.annotation} -o {output} " 
         "-g {params.attribute} {input.bam} -s {params.strand} &> {log}"
 

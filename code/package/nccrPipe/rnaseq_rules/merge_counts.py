@@ -35,6 +35,7 @@ def merge_kallistoCounts(outdir, samples):
     df = pd.concat(pd_list, axis=1)
     return df.loc[:, ~df.columns.duplicated()]
 
+
 if __name__ == "__main__":
     samples = [f'R{i}' for i in range(1,121)]
     outdirFC = '/nfs/nas22/fs2202/biol_micro_bioinf_nccr/vorholt/akeppler/rnaseq/scratch/counts'

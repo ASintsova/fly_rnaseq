@@ -1,9 +1,8 @@
-ProjectName: Test
-dataDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/test_data/rnaseq/raw
-outDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/test_data/rnaseq/
+ProjectName: Stwl-rnaseq
+dataDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/fly/data
+outDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/fly
 sampleFile: configs/rnaseq_samples.txt
-fq_fwd: _1.fq.gz
-fq_rvr: _2.fq.gz
+fq_fwd: _R1.fastq.gz
 
 #Preprocessing
 qc: yes
@@ -15,17 +14,16 @@ minlen: 45
 merged: false # By default to do not use merge for isolate genome assembly
 fastqc: no # Options: no, before, after, both
 
-
 # STAR
-refGenome: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/Projects_NCCR/ref/ath/GCF_000001735.4_TAIR10.1_genomic.fna
-refAnn: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/Projects_NCCR/ref/ath/GCF_000001735.4_TAIR10.1_genomic.edited2.gtf
-refGff: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/Projects_NCCR/ref/ath/Arabidopsis_thaliana.TAIR10.50.gff3
-genomeDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/Projects_NCCR/ref/ath/ncbi_star_index
-overhang: 149
-maxIntron: 50000
-
+refGenome: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/fly/dm6/Sequence/WholeGenomeFasta/genome.fa
+refAnn: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/fly/dm6/Annotation/Genes/genes.gtf
+refGff:
+genomeDir: /nfs/cds-peta/exports/biol_micro_cds_gr_sunagawa/scratch/ansintsova/fly/dm6/star_index
+overhang: 99
+maxIntron: 1000000
+genomeSAIndexNbases: 12
 # featureCounts
-strand: 0
+strand: 2
 attribute: gene_id
 
 # kallisto
